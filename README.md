@@ -16,40 +16,35 @@ API construida con Laravel 11 utilizando el Patrón Repositorio para la gestión
    git clone [https://github.com/DeNialDev/proyectos-backend.git](https://github.com/DeNialDev/proyectos-backend.git)
    cd proyectos-backend
 Instalar dependencias de PHP:
-
- ```bash
-composer install
+    ```bash
+    composer install
 Configurar el archivo de entorno:
-
- ```bash
-cp .env.example .env
-(Editar el archivo .env configurando las credenciales de la base de datos)
+    ```bash
+    cp .env.example .env
 
 Generar la clave de la aplicación:
-
- ```bash
-php artisan key:generate
+    ```bash
+    php artisan key:generate
+    
 Correr migraciones y seeders:
-
- ```bash
-php artisan migrate --seed
+    ```bash
+    php artisan migrate --seed
 Generar llaves de cifrado para Laravel Passport:
+    ```bash
+    php artisan passport:keys --force
 
- ```bash
-php artisan passport:keys --force
 Configurar permisos de almacenamiento (Linux/Ubuntu):
-
- ```bash
-sudo chown -R $USER:www-data storage bootstrap/cache
-sudo chmod -R 775 storage bootstrap/cache
-chmod 660 storage/oauth-private.key storage/oauth-public.key
+    ```bash
+    sudo chown -R $USER:www-data storage bootstrap/cache
+    sudo chmod -R 775 storage bootstrap/cache
+    chmod 660 storage/oauth-private.key storage/oauth-public.key
+    
 Limpiar caché del contenedor:
-
- ```bash
-php artisan config:clear
-php artisan cache:clear
+    ```bash
+    php artisan config:clear
+    php artisan cache:clear
+    
 Iniciar el servidor de desarrollo:
-
- ```bash
-php artisan serve
+    ```bash
+    php artisan serve
 La API estará disponible en http://127.0.0.1:8000.
