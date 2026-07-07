@@ -15,35 +15,30 @@ API construida con Laravel 11 utilizando el Patrón Repositorio para la gestión
    ```bash
    git clone [https://github.com/DeNialDev/proyectos-backend.git](https://github.com/DeNialDev/proyectos-backend.git)
    cd proyectos-backend
-Instalar dependencias de PHP:
+2. Instalar dependencias de PHP:
     ```bash
     composer install
-Configurar el archivo de entorno:
+3. Configurar el archivo de entorno:
     ```bash
     cp .env.example .env
-
-Generar la clave de la aplicación:
+4. Generar la clave de la aplicación:
     ```bash
     php artisan key:generate
-    
-Correr migraciones y seeders:
+5. Correr migraciones y seeders:
     ```bash
     php artisan migrate --seed
-Generar llaves de cifrado para Laravel Passport:
+6. Generar llaves de cifrado para Laravel Passport:
     ```bash
     php artisan passport:keys --force
-
-Configurar permisos de almacenamiento (Linux/Ubuntu):
+7. Configurar permisos de almacenamiento (Linux/Ubuntu):
     ```bash
     sudo chown -R $USER:www-data storage bootstrap/cache
     sudo chmod -R 775 storage bootstrap/cache
     chmod 660 storage/oauth-private.key storage/oauth-public.key
-    
-Limpiar caché del contenedor:
+8. Limpiar caché del contenedor:
     ```bash
     php artisan config:clear
     php artisan cache:clear
-    
 Iniciar el servidor de desarrollo:
     ```bash
     php artisan serve
