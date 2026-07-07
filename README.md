@@ -17,39 +17,39 @@ API construida con Laravel 11 utilizando el Patrón Repositorio para la gestión
    cd proyectos-backend
 Instalar dependencias de PHP:
 
-Bash
+ ```bash
 composer install
 Configurar el archivo de entorno:
 
-Bash
+ ```bash
 cp .env.example .env
 (Editar el archivo .env configurando las credenciales de la base de datos)
 
 Generar la clave de la aplicación:
 
-Bash
+ ```bash
 php artisan key:generate
 Correr migraciones y seeders:
 
-Bash
+ ```bash
 php artisan migrate --seed
 Generar llaves de cifrado para Laravel Passport:
 
-Bash
+ ```bash
 php artisan passport:keys --force
 Configurar permisos de almacenamiento (Linux/Ubuntu):
 
-Bash
+ ```bash
 sudo chown -R $USER:www-data storage bootstrap/cache
 sudo chmod -R 775 storage bootstrap/cache
 chmod 660 storage/oauth-private.key storage/oauth-public.key
 Limpiar caché del contenedor:
 
-Bash
+ ```bash
 php artisan config:clear
 php artisan cache:clear
 Iniciar el servidor de desarrollo:
 
-Bash
+ ```bash
 php artisan serve
 La API estará disponible en http://127.0.0.1:8000.
