@@ -15,7 +15,7 @@ class ProjectRepository implements ProjectRepositoryInterface
 
     public function find(int $id): ?Project
     {
-        return Project::with('owner')->findOrFail($id);
+        return Project::with('users')->find($id);
     }
 
     public function create(array $data): Project
@@ -33,5 +33,11 @@ class ProjectRepository implements ProjectRepositoryInterface
     {
         $project = Project::findOrFail($id);
         return $project->delete();
+    }
+
+    public function assignUsers(int $projectId, array $userIds): void
+    {
+        $project = Project::findOrFail($projectId);
+        $project->users()->sync($userIds);
     }
 }

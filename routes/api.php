@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\TaskController;
-
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Rutas Públicas (Sin Autenticación)
@@ -27,11 +27,13 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/user', function (\Illuminate\Http\Request $request) {
         return $request->user();
     });
-
+    Route::post('projects/{id}/assign', [ProjectController::class, 'assignUsers']);
     // Módulo de Proyectos (CRUD Completo protegido)
     Route::apiResource('projects', ProjectController::class);
 
     // Módulo de Tareas (CRUD Completo protegido)
     Route::get('projects/{projectId}/tasks', [TaskController::class, 'indexByProject']);
     Route::apiResource('tasks', TaskController::class);
+    Route::apiResource('users', UserController::class);
+    
 });

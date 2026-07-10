@@ -12,4 +12,5 @@ interface ProjectRepositoryInterface
     public function create(array $data): Project;
     public function update(int $id, array $data): bool;
     public function delete(int $id): bool;
+    public function assignUsers(int $projectId, array $userIds): void;  
 }

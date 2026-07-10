@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
+use App\Http\Requests\AssignProjectUsersRequest; 
 use App\Repositories\ProjectRepositoryInterface;
 use Illuminate\Http\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
@@ -54,6 +55,29 @@ class ProjectController extends Controller
         
         return response()->json([
             'message' => 'Proyecto eliminado exitosamente (Soft Delete).'
+        ], Response::HTTP_OK);
+    }
+
+
+    public function assignUsers(AssignProjectUsersRequest $request, int $id): JsonResponse
+    {
+        // Validamos primero que el proyecto exista y pertenezca al usuario autenticado
+        $project = $this->projectRepository->find($id);
+        
+        if (!$project) {
+            return response()->json(['message' => 'Proyecto no encontrado.'], Response::HTTP_NOT_FOUND);
+        }
+
+        if ($project->owner_id !== auth()->id()) {
+            return response()->json(['message' => 'No autorizado para asignar usuarios a este proyecto.'], Response::HTTP_FORBIDDEN);
+        }
+
+        // Al usar $request->validated(), Laravel ya se encargó de verificar que los IDs existan
+        $this->projectRepository->assignUsers($id, $request->validated()['user_ids']);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Usuarios asignados al proyecto exitosamente.'
         ], Response::HTTP_OK);
     }
 }
