@@ -3,7 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-
+use App\Repositories\NotificationRepositoryInterface;
+use App\Repositories\Eloquent\NotificationRepository;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -22,7 +23,11 @@ class AppServiceProvider extends ServiceProvider
             \App\Repositories\UserRepositoryInterface::class,
             \App\Repositories\Eloquent\UserRepository::class
         );
-    
+
+        $this->app->bind(
+            NotificationRepositoryInterface::class,
+            NotificationRepository::class
+        );
     }
 
     /**

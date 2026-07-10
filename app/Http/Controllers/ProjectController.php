@@ -80,4 +80,11 @@ class ProjectController extends Controller
             'message' => 'Usuarios asignados al proyecto exitosamente.'
         ], Response::HTTP_OK);
     }
+
+  public function getDashboardSummary(): JsonResponse
+    {
+        $summary = $this->projectRepository->getDashboardSummary(auth()->id());
+
+        return response()->json($summary, Response::HTTP_OK);
+    }
 }

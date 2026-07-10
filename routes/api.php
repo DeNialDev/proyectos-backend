@@ -35,5 +35,9 @@ Route::middleware('auth:api')->group(function () {
     Route::get('projects/{projectId}/tasks', [TaskController::class, 'indexByProject']);
     Route::apiResource('tasks', TaskController::class);
     Route::apiResource('users', UserController::class);
+    Route::get('/notifications', [NotificationController::class, 'index']);
+    Route::patch('/notifications/{id}/read', [NotificationController::class, 'read']);
+    Route::post('/notifications/read-all', [NotificationController::class, 'readAll']);
+    Route::get('/dashboard/summary', [App\Http\Controllers\ProjectController::class, 'getDashboardSummary']);
     
 });
